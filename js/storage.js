@@ -17,4 +17,5 @@ export const SUFFIXES = {
     quizAnswerLog: 'quiz_answer_log',
     quizPaused: 'quiz_paused',
     quizMeta: 'quiz_meta',
+    srsCards: 'srs_cards',
 };

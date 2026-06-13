@@ -1215,3 +1215,103 @@ table tbody tr:nth-child(even) {
     margin-bottom: 16px;
     text-align: center;
 }
+
+/* ===== 今日の復習（間隔反復 / SRS） ===== */
+#review-question-container {
+    margin-top: 8px;
+}
+#review-question-text {
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin: 8px 0 16px;
+}
+#review-feedback-container {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+#review-result-message {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+#review-explanation-text {
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+.srs-rating-prompt {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-align: center;
+}
+.srs-rating {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+.srs-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 12px 6px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.05s ease, box-shadow 0.15s ease;
+}
+.srs-btn:active {
+    transform: translateY(1px);
+}
+.srs-btn-label {
+    font-weight: 700;
+    font-size: 0.92em;
+}
+.srs-btn-interval {
+    font-size: 0.72em;
+    color: var(--text-muted);
+}
+.srs-btn--again { border-color: #DC2626; color: #DC2626; }
+.srs-btn--hard  { border-color: #D97706; color: #B45309; }
+.srs-btn--good  { border-color: var(--primary); color: var(--primary); }
+.srs-btn--easy  { border-color: #059669; color: #047857; }
+.srs-btn--again:hover { background: #FEF2F2; }
+.srs-btn--hard:hover  { background: #FFFBEB; }
+.srs-btn--good:hover  { background: #EEF2FF; }
+.srs-btn--easy:hover  { background: #ECFDF5; }
+
+.review-complete-card {
+    text-align: center;
+    padding: 40px 20px;
+}
+.review-complete-icon {
+    font-size: 64px;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+.review-complete-card h2 {
+    margin-bottom: 8px;
+}
+#review-complete-sub {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+.review-complete-button {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--text-inverse);
+    padding: 12px 28px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    text-decoration: none;
+}
+.review-complete-link {
+    display: block;
+    margin-top: 16px;
+    color: var(--text-muted);
+    text-decoration: underline;
+    font-size: 0.9em;
+}
