@@ -17,6 +17,7 @@ const FONT_CACHE = 'qa-fonts-v1'; // クロスオリジンの Google Fonts（デ
 const PRECACHE_PATHS = [
     './',
     // ページ
+    'landing.html',
     'index.html',
     'ai-quiz.html',
     'privacy.html',
@@ -46,6 +47,7 @@ const PRECACHE_PATHS = [
     'js/storage.js',
     'js/progress.js',
     'js/main.js',
+    'js/landing.js',
     'js/quiz.js',
     'js/quizEngine.js',
     'js/questionCard.js',

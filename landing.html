@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Learning Trainer - 学習対象選択</title>
+    <meta name="description" content="学習対象を選択して、QA学習を始めましょう。個人制作の非公式・非認定QA学習PWAです。">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/screens.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="img/qa-learning-icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="img/qa-learning-icon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="QA Learning Trainer">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZ9EN5NX5F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BZ9EN5NX5F');
+    </script>
+    <!-- hidden legacy nav (no-op in new design) -->
+    <nav id="main-nav" class="hidden"></nav>
+    <nav id="breadcrumb-nav" class="hidden"></nav>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <span class="header-home-title">QA Learning Trainer</span>
+        </div>
+    </header>
+
+    <main class="app-main" id="app-container">
+        <section id="landing-screen">
+
+            <!-- Certification Selector -->
+            <div class="landing-selector-section">
+                <h2 class="landing-title">学習対象を選択</h2>
+                <p class="landing-subtitle">学びたい資格レベルを選んで、「開始」をタップしてください</p>
+                <div class="cert-cards" id="cert-cards"></div>
+            </div>
+
+            <!-- Start Button -->
+            <div class="landing-action">
+                <button id="start-button" class="landing-start-button" disabled>
+                    <span class="material-icons">arrow_forward</span>
+                    開始
+                </button>
+            </div>
+
+            <!-- Rights & Safety Notice -->
+            <aside id="rights-safety-disclaimer"></aside>
+
+        </section>
+    </main>
+
+    <script type="module" src="js/landing.js"></script>
+</body>
+</html>
