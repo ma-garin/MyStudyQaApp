@@ -2,8 +2,6 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('../js/utils.js', () => ({
     setupCommonNavigation: vi.fn(() => {
-        // 本物の injectRightsDisclaimer の要点を再現:
-        // 既存の #rights-safety-disclaimer が無ければ注入する。
         if (!document.getElementById('rights-safety-disclaimer')) {
             const aside = document.createElement('aside');
             aside.id = 'rights-safety-disclaimer';
@@ -20,12 +18,22 @@ vi.stubGlobal('localStorage', {
     removeItem: k => { delete store[k]; },
 });
 
+// window.location.href への代入をキャプチャ
+let navigatedTo = null;
+Object.defineProperty(window, 'location', {
+    value: { href: '', replace: vi.fn() },
+    writable: true,
+});
+Object.defineProperty(window.location, 'href', {
+    get: () => navigatedTo ?? '',
+    set: v => { navigatedTo = v; },
+});
+
 import '../js/landing.js';
 
 function renderBody() {
-    document.body.innerHTML = `
-        <div class="cert-cards cert-cards--landing" id="cert-cards"></div>
-        <button id="start-button" disabled></button>`;
+    navigatedTo = null;
+    document.body.innerHTML = `<ul id="cert-list"></ul>`;
 }
 
 async function boot() {
@@ -39,23 +47,26 @@ describe('ランディング画面（landing.js）', () => {
         renderBody();
     });
 
-    it('5つの資格カードを描画する', async () => {
+    it('5つの資格リストを描画する', async () => {
         await boot();
-        const cards = document.querySelectorAll('#cert-cards .cert-card');
-        expect(cards.length).toBe(5);
+        const items = document.querySelectorAll('#cert-list .cert-list-item');
+        expect(items.length).toBe(5);
     });
 
-    it('既定（fl）が選択済みで開始ボタンが有効', async () => {
+    it('利用可能な資格をクリックすると localStorage に保存し index.html へ遷移する', async () => {
         await boot();
-        expect(document.querySelector('[data-cert-id="fl"]').classList.contains('cert-card--active')).toBe(true);
-        expect(document.getElementById('start-button').disabled).toBe(false);
+        const fl = document.querySelector('[aria-label*="FL"]');
+        expect(fl).not.toBeNull();
+        fl.click();
+        expect(localStorage.getItem('qa_selected_cert')).toBe('fl');
+        expect(navigatedTo).toBe('index.html');
     });
 
-    it('カード選択で active が切り替わり localStorage に保存される', async () => {
+    it('ALTA を選択すると alta が保存される', async () => {
         await boot();
-        document.querySelector('[data-cert-id="alta"]').click();
-        expect(document.querySelector('[data-cert-id="alta"]').classList.contains('cert-card--active')).toBe(true);
-        expect(document.querySelector('[data-cert-id="fl"]').classList.contains('cert-card--active')).toBe(false);
+        const alta = document.querySelector('[aria-label*="ALTA"]');
+        expect(alta).not.toBeNull();
+        alta.click();
         expect(localStorage.getItem('qa_selected_cert')).toBe('alta');
     });
 

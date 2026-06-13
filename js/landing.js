@@ -1,82 +1,72 @@
 // js/landing.js - ランディングページの初期化と資格選択
 import { setupCommonNavigation } from './utils.js';
-import { CERTIFICATIONS, getSelectedCert, setSelectedCert } from './certifications.js';
+import { CERTIFICATIONS, setSelectedCert } from './certifications.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     setupCommonNavigation();
-    renderCertSelector();
-    setupStartButton();
+    renderCertList();
 });
 
-function renderCertSelector() {
-    const container = document.getElementById('cert-cards');
-    if (!container) return;
-    const selectedId = getSelectedCert();
+function renderCertList() {
+    const list = document.getElementById('cert-list');
+    if (!list) return;
 
-    container.textContent = '';
     CERTIFICATIONS.forEach(cert => {
-        const card = document.createElement('button');
-        card.type = 'button';
-        card.className = 'cert-card' + (cert.id === selectedId ? ' cert-card--active' : '') + (!cert.available ? ' cert-card--disabled' : '');
-        card.disabled = !cert.available;
-        card.setAttribute('data-cert-id', cert.id);
+        const li = document.createElement('li');
+        li.className = 'cert-list-item' + (!cert.available ? ' cert-list-item--disabled' : '');
+
+        const nameArea = document.createElement('span');
+        nameArea.className = 'cert-list-name';
 
         const nameEl = document.createElement('span');
-        nameEl.className = 'cert-card-name';
+        nameEl.className = 'cert-list-cert-name';
         nameEl.textContent = cert.name;
 
         const levelEl = document.createElement('span');
         levelEl.className = `cert-card-level cert-card-level--${cert.level}`;
         levelEl.textContent = levelLabel(cert.level);
 
-        const descEl = document.createElement('span');
-        descEl.className = 'cert-card-desc';
-        descEl.textContent = cert.description;
+        nameArea.append(nameEl, levelEl);
 
-        const statusEl = document.createElement('span');
+        const descEl = document.createElement('span');
+        descEl.className = 'cert-list-desc';
+        descEl.textContent = cert.available ? cert.description : '近日公開';
+
+        const metaArea = document.createElement('span');
+        metaArea.className = 'cert-list-meta';
+
         if (cert.available) {
-            statusEl.className = 'cert-card-count';
-            statusEl.textContent = `${cert.questionCount}問`;
-        } else {
-            statusEl.className = 'cert-card-coming';
-            statusEl.textContent = '近日公開';
+            const countEl = document.createElement('span');
+            countEl.className = 'cert-list-count';
+            countEl.textContent = `${cert.questionCount}問`;
+            metaArea.appendChild(countEl);
         }
 
-        card.append(nameEl, levelEl, descEl, statusEl);
-        card.addEventListener('click', () => {
-            handleCertSelect(cert.id, container);
-        });
-        container.appendChild(card);
+        const arrowEl = document.createElement('span');
+        arrowEl.className = 'material-icons cert-list-arrow';
+        arrowEl.setAttribute('aria-hidden', 'true');
+        arrowEl.textContent = 'chevron_right';
+        metaArea.appendChild(arrowEl);
+
+        li.append(nameArea, descEl, metaArea);
+
+        if (cert.available) {
+            li.setAttribute('role', 'button');
+            li.setAttribute('tabindex', '0');
+            li.setAttribute('aria-label', `${cert.name}（${levelLabel(cert.level)}）${cert.questionCount}問`);
+            li.addEventListener('click', () => selectAndGo(cert.id));
+            li.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectAndGo(cert.id); }
+            });
+        }
+
+        list.appendChild(li);
     });
 }
 
-function handleCertSelect(certId, container) {
+function selectAndGo(certId) {
     setSelectedCert(certId);
-    container.querySelectorAll('.cert-card').forEach(c => c.classList.remove('cert-card--active'));
-    container.querySelector(`[data-cert-id="${certId}"]`).classList.add('cert-card--active');
-    enableStartButton();
-}
-
-function enableStartButton() {
-    const button = document.getElementById('start-button');
-    if (button) {
-        button.disabled = false;
-    }
-}
-
-function setupStartButton() {
-    const button = document.getElementById('start-button');
-    if (!button) return;
-
-    // 起動時に選択済みなら開始ボタンを有効化
-    const selectedId = getSelectedCert();
-    if (selectedId) {
-        button.disabled = false;
-    }
-
-    button.addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
+    window.location.href = 'index.html';
 }
 
 function levelLabel(level) {

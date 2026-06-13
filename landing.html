@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QA Learning Trainer - 学習対象選択</title>
+    <title>QA Learning Trainer</title>
     <meta name="description" content="学習対象を選択して、QA学習を始めましょう。個人制作の非公式・非認定QA学習PWAです。">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -25,33 +25,27 @@
         gtag('js', new Date());
         gtag('config', 'G-BZ9EN5NX5F');
     </script>
-    <!-- hidden legacy nav (no-op in new design) -->
     <nav id="main-nav" class="hidden"></nav>
     <nav id="breadcrumb-nav" class="hidden"></nav>
 </head>
 <body>
-    <header class="app-header">
-        <div class="header-inner">
-            <span class="header-home-title">QA Learning Trainer</span>
-        </div>
-    </header>
 
     <main class="app-main" id="app-container">
         <section id="landing-screen">
 
-            <!-- Certification Selector -->
-            <div class="landing-selector-section">
-                <h2 class="landing-title">学習対象を選択</h2>
-                <p class="landing-subtitle">学びたい資格レベルを選んで、「開始」をタップしてください</p>
-                <div class="cert-cards cert-cards--landing" id="cert-cards" role="radiogroup" aria-label="学習対象の資格"></div>
+            <!-- App Hero -->
+            <div class="landing-hero">
+                <div class="landing-hero-icon">
+                    <img src="img/qa-learning-icon.svg" alt="" width="56" height="56">
+                </div>
+                <h1 class="landing-app-name">QA Learning Trainer</h1>
+                <p class="landing-app-sub">ソフトウェアテスト学習アプリ</p>
             </div>
 
-            <!-- Start Button -->
-            <div class="landing-action">
-                <button id="start-button" class="landing-start-button" disabled>
-                    <span class="material-icons">arrow_forward</span>
-                    開始
-                </button>
+            <!-- Cert List -->
+            <div class="landing-list-section">
+                <p class="landing-list-label">学習コースを選択</p>
+                <ul class="cert-list" id="cert-list" role="list"></ul>
             </div>
 
         </section>
