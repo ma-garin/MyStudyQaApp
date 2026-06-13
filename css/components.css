@@ -1245,6 +1245,15 @@ table tbody tr:nth-child(even) {
     margin-bottom: 8px;
     text-align: center;
 }
+.srs-rating-hint {
+    display: inline-block;
+    font-size: 0.85em;
+    opacity: 0.75;
+}
+@media (hover: none) {
+    /* タッチ端末ではキー操作の案内を隠す */
+    .srs-rating-hint { display: none; }
+}
 .srs-rating {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1314,4 +1323,70 @@ table tbody tr:nth-child(even) {
     color: var(--text-muted);
     text-decoration: underline;
     font-size: 0.9em;
+}
+
+/* ===== ランディング（学習対象選択）画面 ===== */
+#landing-screen {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 8px 0 24px;
+}
+.landing-selector-section {
+    margin-top: 8px;
+}
+.landing-title {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.landing-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+/* 選択専用の縦並びカード（ホームの横スクロールとは別レイアウト） */
+.cert-cards--landing {
+    flex-direction: column;
+    overflow-x: visible;
+    gap: 10px;
+}
+.cert-cards--landing .cert-card {
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+    padding: 14px 16px;
+}
+.landing-action {
+    margin-top: 24px;
+}
+.landing-start-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--primary), #6366F1);
+    color: var(--text-inverse);
+    font-family: inherit;
+    font-size: 1.05em;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
+    transition: transform 0.05s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.landing-start-button .material-icons {
+    font-size: 20px;
+}
+.landing-start-button:active {
+    transform: translateY(1px);
+}
+.landing-start-button:disabled {
+    background: var(--border);
+    color: var(--text-muted);
+    box-shadow: none;
+    cursor: not-allowed;
 }

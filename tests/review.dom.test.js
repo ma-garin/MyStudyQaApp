@@ -79,6 +79,15 @@ describe('復習画面（review.js）', () => {
         renderBody();
     });
 
+    it('キーボード操作: Enterで解答、数字キーで確信度評価し次へ進む', async () => {
+        await boot();
+        document.querySelector('input[value="a"]').checked = true; // 正解
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+        expect(document.getElementById('review-feedback-container').classList.contains('hidden')).toBe(false);
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: '3' })); // できた(GOOD)
+        expect(document.getElementById('review-question-text').textContent).toBe('Q2');
+    });
+
     it('新規カードのキューを構築し最初の問題を表示する', async () => {
         await boot();
         expect(document.getElementById('review-question-text').textContent).toBe('Q1');

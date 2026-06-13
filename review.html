@@ -80,10 +80,10 @@
 
             <!-- Feedback + confidence rating -->
             <div id="review-feedback-container" class="hidden">
-                <p id="review-result-message"></p>
+                <p id="review-result-message" aria-live="polite"></p>
                 <p id="review-explanation-text"></p>
 
-                <p class="srs-rating-prompt">どのくらい覚えていましたか？</p>
+                <p class="srs-rating-prompt">どのくらい覚えていましたか？<span class="srs-rating-hint">（キー 1〜4 でも選択できます）</span></p>
                 <div class="srs-rating" id="srs-rating">
                     <button type="button" class="srs-btn srs-btn--again" data-rating="0">
                         <span class="srs-btn-label">もう一度</span>
