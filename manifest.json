@@ -1,7 +1,7 @@
 {
   "name": "QA Learning Trainer",
   "short_name": "QA Trainer",
-  "start_url": "index.html",
+  "start_url": "landing.html",
   "display": "standalone",
   "background_color": "#f8f9fa",
   "theme_color": "#4F46E5",
