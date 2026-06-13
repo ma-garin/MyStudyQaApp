@@ -90,7 +90,7 @@ export function clearWrongQuestions() {
 
 export function clearAllProgress() {
     const certId = getSelectedCert();
-    [SUFFIXES.today, SUFFIXES.total, SUFFIXES.wrong, SUFFIXES.answeredIds, SUFFIXES.lessonsRead]
+    [SUFFIXES.today, SUFFIXES.total, SUFFIXES.wrong, SUFFIXES.answeredIds, SUFFIXES.lessonsRead, SUFFIXES.srsCards]
         .forEach(suffix => localStorage.removeItem(certKey(certId, suffix)));
     localStorage.removeItem(GLOBAL_KEYS.streak);
     localStorage.removeItem(GLOBAL_KEYS.lastDate);

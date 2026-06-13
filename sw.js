@@ -9,7 +9,7 @@
 // - 同一オリジンの静的アセットは cache-first（バージョンで陳腐化を限定）。
 // - 大きな問題/レッスンデータはプリキャッシュせず、開いた資格ぶんだけランタイムキャッシュ。
 
-const VERSION = 'v1'; // リリースごとに手動更新（README 参照）
+const VERSION = 'v2'; // リリースごとに手動更新（README 参照）
 const APP_CACHE = `qa-app-${VERSION}`; // アプリシェル＋同一オリジン資産（デプロイで入替）
 const FONT_CACHE = 'qa-fonts-v1'; // クロスオリジンの Google Fonts（デプロイで消さない）
 
@@ -19,6 +19,7 @@ const PRECACHE_PATHS = [
     // ページ
     'landing.html',
     'index.html',
+    'review.html',
     'ai-quiz.html',
     'privacy.html',
     'study.html',
@@ -48,6 +49,8 @@ const PRECACHE_PATHS = [
     'js/progress.js',
     'js/main.js',
     'js/landing.js',
+    'js/srs.js',
+    'js/review.js',
     'js/quiz.js',
     'js/quizEngine.js',
     'js/questionCard.js',

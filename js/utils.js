@@ -14,6 +14,7 @@ const PAGE_TO_NAV = {
     'mock-exam.html': 'nav-quiz',
     'syllabus.html': 'nav-home',
     'lesson.html': 'nav-home',
+    'review.html': 'nav-quiz',
     'ai-quiz.html': 'nav-ai',
     'glossary.html': 'nav-glossary',
 };

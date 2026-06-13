@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日の復習 - QA Learning Trainer</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/screens.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="img/qa-learning-icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="img/qa-learning-icon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="QA Learning Trainer">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZ9EN5NX5F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BZ9EN5NX5F');
+    </script>
+    <nav id="main-nav" class="hidden"></nav>
+    <nav id="breadcrumb-nav" class="hidden"></nav>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <a href="index.html" class="header-back" aria-label="ホームに戻る">
+                <span class="material-icons">arrow_back_ios</span>
+            </a>
+            <h1 class="header-title">今日の復習</h1>
+        </div>
+    </header>
+
+    <main class="app-main" id="app-container">
+        <section id="review-screen">
+
+            <!-- Progress -->
+            <div class="quiz-progress-header">
+                <span class="quiz-progress-text">
+                    残り <span id="review-remaining">0</span> 枚 ・ コース: <span id="review-cert-name">-</span>
+                </span>
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-fill" id="review-progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Question card -->
+            <div id="review-question-container">
+                <p class="problem-syllabus-info" id="review-meta"></p>
+                <p id="review-question-text"></p>
+
+                <div id="review-options-container">
+                    <label class="option-label">
+                        <input type="radio" name="review-answer" value="a">
+                        <span class="option-text"></span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="review-answer" value="b">
+                        <span class="option-text"></span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="review-answer" value="c">
+                        <span class="option-text"></span>
+                    </label>
+                    <label class="option-label">
+                        <input type="radio" name="review-answer" value="d">
+                        <span class="option-text"></span>
+                    </label>
+                </div>
+
+                <p id="review-answer-warning" class="answer-warning hidden" role="alert">解答を選択してください。</p>
+                <button id="review-submit-button" type="button">解答する</button>
+            </div>
+
+            <!-- Feedback + confidence rating -->
+            <div id="review-feedback-container" class="hidden">
+                <p id="review-result-message"></p>
+                <p id="review-explanation-text"></p>
+
+                <p class="srs-rating-prompt">どのくらい覚えていましたか？</p>
+                <div class="srs-rating" id="srs-rating">
+                    <button type="button" class="srs-btn srs-btn--again" data-rating="0">
+                        <span class="srs-btn-label">もう一度</span>
+                        <span class="srs-btn-interval" data-interval="0"></span>
+                    </button>
+                    <button type="button" class="srs-btn srs-btn--hard" data-rating="1">
+                        <span class="srs-btn-label">難しい</span>
+                        <span class="srs-btn-interval" data-interval="1"></span>
+                    </button>
+                    <button type="button" class="srs-btn srs-btn--good" data-rating="2">
+                        <span class="srs-btn-label">できた</span>
+                        <span class="srs-btn-interval" data-interval="2"></span>
+                    </button>
+                    <button type="button" class="srs-btn srs-btn--easy" data-rating="3">
+                        <span class="srs-btn-label">余裕</span>
+                        <span class="srs-btn-interval" data-interval="3"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Completion -->
+            <div id="review-complete" class="hidden">
+                <div class="review-complete-card">
+                    <span class="material-icons review-complete-icon">task_alt</span>
+                    <h2 id="review-complete-title">今日の復習は完了です！</h2>
+                    <p id="review-complete-sub"></p>
+                    <a href="index.html" class="review-complete-button">ホームに戻る</a>
+                    <a href="study.html" class="review-complete-link">新しい問題を解く</a>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <nav class="bottom-nav" role="navigation" aria-label="メインナビゲーション">
+        <a href="index.html" class="bottom-nav-item" id="nav-home">
+            <span class="material-icons">home</span>
+            <span class="bottom-nav-label">ホーム</span>
+        </a>
+        <a href="study.html" class="bottom-nav-item" id="nav-quiz">
+            <span class="material-icons">edit_note</span>
+            <span class="bottom-nav-label">クイズ</span>
+        </a>
+        <a href="ai-quiz.html" class="bottom-nav-item" id="nav-ai">
+            <span class="material-icons">policy</span>
+            <span class="bottom-nav-label">方針</span>
+        </a>
+        <a href="glossary.html" class="bottom-nav-item" id="nav-glossary">
+            <span class="material-icons">sort_by_alpha</span>
+            <span class="bottom-nav-label">用語集</span>
+        </a>
+    </nav>
+
+    <script type="module" src="js/review.js"></script>
+</body>
+</html>

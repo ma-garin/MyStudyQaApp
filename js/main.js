@@ -5,6 +5,7 @@ import { topicMaps } from './topicMap.js';
 import { CERTIFICATIONS, getSelectedCert, setSelectedCert } from './certifications.js';
 import { certKey, SUFFIXES } from './storage.js';
 import { aggregateChapterStats } from './chapterStats.js';
+import { countDue, loadState as loadSrsState } from './srs.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     setupCommonNavigation();
@@ -141,6 +142,16 @@ async function renderDashboard() {
         weakBadge.textContent = `復習 ${wrongCount}問`;
         weakBadge.style.display = wrongCount > 0 ? 'inline-block' : 'none';
     }
+
+    const dueCount = countDue(loadSrsState(certId), questions.map(q => q.id));
+    const reviewBadge = document.getElementById('review-badge');
+    if (reviewBadge) {
+        reviewBadge.textContent = `${dueCount}枚`;
+        reviewBadge.style.display = dueCount > 0 ? 'inline-block' : 'none';
+    }
+    setText('review-desc', dueCount > 0
+        ? `${dueCount}枚が復習タイミングです`
+        : '間隔反復で記憶を定着');
 
     renderChapterHeatmap(questions, certId, map);
 }
