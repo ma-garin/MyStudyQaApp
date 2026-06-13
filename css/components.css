@@ -1326,67 +1326,123 @@ table tbody tr:nth-child(even) {
 }
 
 /* ===== ランディング（学習対象選択）画面 ===== */
+/* ── Landing Screen ───────────────────────────── */
 #landing-screen {
-    max-width: 560px;
+    max-width: 520px;
     margin: 0 auto;
-    padding: 8px 0 24px;
+    padding: 0 0 40px;
 }
-.landing-selector-section {
-    margin-top: 8px;
-}
-.landing-title {
-    font-size: 1.3em;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-.landing-subtitle {
-    color: var(--text-muted);
-    font-size: 0.9em;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-/* 選択専用の縦並びカード（ホームの横スクロールとは別レイアウト） */
-.cert-cards--landing {
+
+/* Hero */
+.landing-hero {
+    display: flex;
     flex-direction: column;
-    overflow-x: visible;
-    gap: 10px;
+    align-items: center;
+    padding: 48px 16px 32px;
+    text-align: center;
 }
-.cert-cards--landing .cert-card {
-    width: 100%;
-    min-width: 0;
-    text-align: left;
+.landing-hero-icon {
+    margin-bottom: 16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(79,70,229,0.18);
+}
+.landing-app-name {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+}
+.landing-app-sub {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Cert List */
+.landing-list-section {
+    padding: 0 16px;
+}
+.landing-list-label {
+    font-size: 0.78em;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 8px 4px;
+}
+.cert-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+.cert-list-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
     padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background-color 0.1s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
-.landing-action {
-    margin-top: 24px;
+.cert-list-item:last-child {
+    border-bottom: none;
 }
-.landing-start-button {
+.cert-list-item:active,
+.cert-list-item:focus-visible {
+    background-color: var(--bg);
+    outline: none;
+}
+.cert-list-item--disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+.cert-list-name {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: var(--radius-full);
-    background: linear-gradient(135deg, var(--primary), #6366F1);
-    color: var(--text-inverse);
-    font-family: inherit;
-    font-size: 1.05em;
+    grid-column: 1;
+    grid-row: 1;
+}
+.cert-list-cert-name {
     font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
-    transition: transform 0.05s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    font-size: 1em;
+    color: var(--text);
 }
-.landing-start-button .material-icons {
-    font-size: 20px;
-}
-.landing-start-button:active {
-    transform: translateY(1px);
-}
-.landing-start-button:disabled {
-    background: var(--border);
+.cert-list-desc {
+    font-size: 0.82em;
     color: var(--text-muted);
-    box-shadow: none;
-    cursor: not-allowed;
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 2px;
+    line-height: 1.4;
+}
+.cert-list-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    padding-left: 8px;
+}
+.cert-list-count {
+    font-size: 0.82em;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+.cert-list-arrow {
+    color: var(--border);
+    font-size: 20px !important;
 }
