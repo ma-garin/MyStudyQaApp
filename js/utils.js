@@ -1,6 +1,7 @@
 // js/utils.js
 import { getCertById, getSelectedCert } from './certifications.js';
 import { runMigrations } from './migrations.js';
+import { registerServiceWorker } from './registerSW.js';
 
 const PAGE_TO_NAV = {
     'index.html': 'nav-home',
@@ -40,6 +41,7 @@ export function setupCommonNavigation() {
     injectSettingsButton(currentPage);
     updateHeaderTitle();
     injectRightsDisclaimer();
+    registerServiceWorker();
 }
 
 function injectSettingsButton(currentPage) {
@@ -76,6 +78,13 @@ function injectRightsDisclaimer() {
         p.style.margin = '0 0 4px';
         footer.appendChild(p);
     });
+    if (window.location.pathname.split('/').pop() !== 'privacy.html') {
+        const privacy = document.createElement('a');
+        privacy.href = 'privacy.html';
+        privacy.textContent = 'プライバシーとアクセス解析について';
+        privacy.style.cssText = 'display:inline-block;margin-top:8px;color:var(--text-muted);text-decoration:underline;';
+        footer.appendChild(privacy);
+    }
     const bottomNav = document.querySelector('.bottom-nav');
     if (bottomNav) bottomNav.insertAdjacentElement('beforebegin', footer);
     else document.body.appendChild(footer);
