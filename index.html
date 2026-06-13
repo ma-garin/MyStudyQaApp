@@ -28,6 +28,13 @@
     <!-- hidden legacy nav (no-op in new design) -->
     <nav id="main-nav" class="hidden"></nav>
     <nav id="breadcrumb-nav" class="hidden"></nav>
+    <script>
+        // アプリ起動時は常にランディング画面を表示する
+        // index.html が直接読み込まれた場合、landing.html へリダイレクト
+        if (window.location.pathname.split('/').pop() === 'index.html') {
+            window.location.replace('landing.html');
+        }
+    </script>
 </head>
 <body>
     <header class="app-header">
