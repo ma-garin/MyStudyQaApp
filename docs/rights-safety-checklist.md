@@ -30,7 +30,7 @@ GitHub Pagesへの公開、PWAの配布、リリース作成の前に、現行HE
 - [ ] README、トップページ、設定画面、フッター相当箇所に免責文がある
 - [ ] HTML title、manifest、PWA表示名、説明文、OGPに「公式」「認定」「準拠」等の誤認表現がない
 - [ ] favicon、PWAアイコン、スクリーンショットが独自デザインである
-- [ ] service workerやビルド成果物が削除済みファイルをキャッシュしない
+- [x] service workerやビルド成果物が削除済みファイルをキャッシュしない（`sw.js` はアプリシェルのみプリキャッシュし、`activate` で旧 `qa-app-*` を削除。`tests/serviceWorker.test.js` が実在を検証）
 - [ ] 外部リンクには公式情報を別サイトで確認する旨が明記されている
 - [ ] `npm test`または既存テストが成功している
 - [ ] HTML、JavaScript、CSS、manifest、service workerの参照切れがない

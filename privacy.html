@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーとアクセス解析 - QA Learning Trainer</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/screens.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="img/qa-learning-icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="img/qa-learning-icon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="QA Learning Trainer">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZ9EN5NX5F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-BZ9EN5NX5F');
+    </script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-inner">
+            <a href="settings.html" class="header-back" aria-label="設定へ戻る">
+                <span class="material-icons">arrow_back_ios</span>
+            </a>
+            <h1 class="header-title">プライバシーとアクセス解析</h1>
+        </div>
+    </header>
+
+    <main class="app-main" id="app-container">
+        <section>
+            <div class="settings-group" style="padding:18px;line-height:1.8;">
+                <h2 style="margin-top:0;">アクセス解析について</h2>
+                <p>本アプリは、利用状況の把握とアプリ改善のために Google Analytics（gtag、測定ID <code>G-BZ9EN5NX5F</code>）を使用しています。ページの表示回数や画面の利用傾向などの匿名の統計情報を計測します。</p>
+            </div>
+
+            <div class="settings-group" style="padding:18px;line-height:1.8;">
+                <h2 style="margin-top:0;">Cookieについて</h2>
+                <p>Google Analytics は計測のためにブラウザへ Cookie を保存します。これらの Cookie は集計目的の統計にのみ使用し、個人を特定するためには使用しません。</p>
+            </div>
+
+            <div class="settings-group" style="padding:18px;line-height:1.8;">
+                <h2 style="margin-top:0;">取得しない情報・端末内に留まる情報</h2>
+                <p>本アプリはログイン機能を持たず、氏名・メールアドレス・アカウントなどの個人情報を収集・保存しません。</p>
+                <p>学習の進捗、苦手問題、中断セッション、学習済みレッスンなどの学習データは、お使いのブラウザの localStorage に保存され、外部へ送信されません。端末やブラウザを変えると引き継がれません。</p>
+            </div>
+
+            <div class="settings-group" style="padding:18px;line-height:1.8;">
+                <h2 style="margin-top:0;">第三者への送信</h2>
+                <p>アクセス解析のデータは Google に送信されます。Google におけるデータの取り扱いについては、Google のプライバシーポリシーをご確認ください。</p>
+                <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー（外部サイト）</a></p>
+            </div>
+
+            <div class="settings-group" style="padding:18px;line-height:1.8;">
+                <h2 style="margin-top:0;">オプトアウトの方法</h2>
+                <p>アクセス解析を無効にしたい場合は、次のいずれかの方法をご利用ください。</p>
+                <p>・Google が提供する「Google アナリティクス オプトアウト アドオン」をブラウザに導入する。<br>
+                ・ブラウザの設定で Cookie や解析スクリプトをブロックする。<br>
+                ・本アプリをインストール済み PWA としてオフラインで利用する（解析の送信は行われません）。<br>
+                ・ブラウザのサイトデータを削除する。</p>
+            </div>
+
+            <div class="settings-group" style="padding:18px;line-height:1.8;">
+                <h2 style="margin-top:0;">本アプリについて</h2>
+                <p>本アプリは、ソフトウェアテスト学習を目的とした個人制作の非公式教材です。ISTQB、JSTQB、その他関連団体の公式教材、認定教材、認定トレーニングではありません。</p>
+            </div>
+
+            <a class="back-to-top-button" href="index.html">ホームに戻る</a>
+        </section>
+    </main>
+
+    <nav class="bottom-nav" role="navigation" aria-label="メインナビゲーション">
+        <a href="index.html" class="bottom-nav-item" id="nav-home">
+            <span class="material-icons">home</span>
+            <span class="bottom-nav-label">ホーム</span>
+        </a>
+        <a href="study.html" class="bottom-nav-item" id="nav-quiz">
+            <span class="material-icons">edit_note</span>
+            <span class="bottom-nav-label">クイズ</span>
+        </a>
+        <a href="ai-quiz.html" class="bottom-nav-item" id="nav-ai">
+            <span class="material-icons">policy</span>
+            <span class="bottom-nav-label">方針</span>
+        </a>
+        <a href="glossary.html" class="bottom-nav-item" id="nav-glossary">
+            <span class="material-icons">sort_by_alpha</span>
+            <span class="bottom-nav-label">用語集</span>
+        </a>
+    </nav>
+
+    <script type="module">
+        import { setupCommonNavigation, setupBackToTopButtons } from './js/utils.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            setupCommonNavigation();
+            setupBackToTopButtons();
+        });
+    </script>
+</body>
+</html>

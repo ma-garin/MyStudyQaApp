@@ -83,6 +83,12 @@ npm test
 
 画面は静的HTML/CSS/JavaScriptで構成されています。公開前にはテストに加えて、全ファイル検索、リンク切れ、PWAの表示名、キャッシュ対象を確認してください。
 
+### Service Worker とキャッシュ更新
+
+オフライン対応のため、ルートの `sw.js` がアプリシェルと同一オリジン資産をキャッシュします（GitHub Pages のサブパス配信に合わせて相対パスで登録）。Google Analytics（gtag）はキャッシュせず素通しします。
+
+リリースで配信物を更新したときは、`sw.js` の `const VERSION = 'v1';` を更新してください（例 `v2`）。`activate` 時に旧 `qa-app-*` キャッシュが削除され、古いファイルが配信され続ける事故を防ぎます。`tests/serviceWorker.test.js` がプリキャッシュ対象の実在を自動検証します。
+
 ## GitHub Pages公開前チェック
 
 - [ ] [権利安全チェックリスト](docs/rights-safety-checklist.md)を全項目確認した
