@@ -87,7 +87,7 @@ npm test
 
 オフライン対応のため、ルートの `sw.js` がアプリシェルと同一オリジン資産をキャッシュします（GitHub Pages のサブパス配信に合わせて相対パスで登録）。Google Analytics（gtag）はキャッシュせず素通しします。
 
-リリースで配信物を更新したときは、`sw.js` の `const VERSION = 'v1';` を更新してください（例 `v2`）。`activate` 時に旧 `qa-app-*` キャッシュが削除され、古いファイルが配信され続ける事故を防ぎます。`tests/serviceWorker.test.js` がプリキャッシュ対象の実在を自動検証します。
+リリースで配信物を更新したときは、`sw.js` の `const VERSION` を更新してください（例 `v3` から `v4`）。`activate` 時に旧 `qa-app-*` キャッシュが削除されます。JS/CSS は online 時に network-first で取得し、HTMLとの旧版混在を防ぎます。`tests/serviceWorker.test.js` がプリキャッシュ対象と更新設定を自動検証します。
 
 ## GitHub Pages公開前チェック
 

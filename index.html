@@ -29,9 +29,11 @@
     <nav id="main-nav" class="hidden"></nav>
     <nav id="breadcrumb-nav" class="hidden"></nav>
     <script>
-        // アプリ起動時は常にランディング画面を表示する
-        // index.html が直接読み込まれた場合、landing.html へリダイレクト
-        if (window.location.pathname.split('/').pop() === 'index.html') {
+        // 初回だけコース選択へ送る。選択後はホームを表示する。
+        if (
+            window.location.pathname.split('/').pop() === 'index.html'
+            && !localStorage.getItem('qa_selected_cert')
+        ) {
             window.location.replace('landing.html');
         }
     </script>
@@ -46,17 +48,22 @@
     <main class="app-main" id="app-container">
         <section id="welcome-screen">
 
-            <!-- Certification Selector -->
-            <div class="cert-selector-section">
-                <h3 class="cert-selector-title">学習コースを選択</h3>
-                <div class="cert-cards" id="cert-cards"></div>
-            </div>
-
             <!-- Greeting -->
             <div class="home-greeting">
+                <p class="greeting-label">現在のコース</p>
                 <p class="greeting-sub" id="greeting-sub">Software Quality Basics</p>
                 <h2>今日もQAの基礎を学びましょう</h2>
             </div>
+
+            <a href="study.html" class="action-card action-card--primary home-primary-action">
+                <span class="material-icons action-icon">play_circle</span>
+                <div style="flex:1;">
+                    <p class="action-title" id="action-title-study">学習を始める</p>
+                    <p class="action-desc" id="action-desc-quiz">自作問題で理解度を確認</p>
+                </div>
+                <span id="weak-badge" style="display:none;background:rgba(255,255,255,0.25);color:#fff;font-size:0.72em;font-weight:700;padding:3px 8px;border-radius:var(--radius-full);white-space:nowrap;"></span>
+                <span class="material-icons home-primary-arrow">chevron_right</span>
+            </a>
 
             <!-- Progress Card -->
             <div class="progress-card">
@@ -88,15 +95,6 @@
 
             <!-- Action Grid -->
             <div class="action-grid">
-                <a href="study.html" class="action-card action-card--primary">
-                    <span class="material-icons action-icon">edit_note</span>
-                    <div style="flex:1;">
-                        <p class="action-title">学習を始める</p>
-                        <p class="action-desc" id="action-desc-quiz">自作問題で理解度を確認</p>
-                    </div>
-                    <span id="weak-badge" style="display:none;background:rgba(255,255,255,0.25);color:#fff;font-size:0.72em;font-weight:700;padding:3px 8px;border-radius:var(--radius-full);white-space:nowrap;"></span>
-                </a>
-
                 <a href="review.html" class="action-card action-card--review" id="review-card" style="grid-column:1 / -1;border:1.5px solid var(--primary);background:linear-gradient(135deg,#EEF2FF,#F5F3FF);">
                     <span class="material-icons action-icon" style="color:var(--primary);">history_edu</span>
                     <div style="flex:1;">

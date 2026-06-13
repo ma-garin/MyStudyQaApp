@@ -9,7 +9,7 @@
 // - 同一オリジンの静的アセットは cache-first（バージョンで陳腐化を限定）。
 // - 大きな問題/レッスンデータはプリキャッシュせず、開いた資格ぶんだけランタイムキャッシュ。
 
-const VERSION = 'v2'; // リリースごとに手動更新（README 参照）
+const VERSION = 'v4'; // リリースごとに手動更新（README 参照）
 const APP_CACHE = `qa-app-${VERSION}`; // アプリシェル＋同一オリジン資産（デプロイで入替）
 const FONT_CACHE = 'qa-fonts-v1'; // クロスオリジンの Google Fonts（デプロイで消さない）
 
@@ -136,7 +136,13 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    // 4) 同一オリジンの静的アセット（css/js/img/manifest/データ）は cache-first
+    // 4) HTML と組み合わせて動く JS/CSS は最新版を優先し、旧版混在を防ぐ。
+    if (request.destination === 'script' || request.destination === 'style') {
+        event.respondWith(networkFirst(request));
+        return;
+    }
+
+    // 5) その他の同一オリジン資産（画像/manifest/データ）は cache-first
     event.respondWith(cacheFirst(request));
 });
 

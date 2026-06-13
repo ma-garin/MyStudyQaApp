@@ -36,6 +36,18 @@ describe('Service Worker', () => {
         expect(source).toContain('www.googletagmanager.com');
         expect(source).toContain('ANALYTICS_HOSTS');
     });
+
+    it('HTML と組み合わせる JS/CSS は network-first で更新する', () => {
+        const source = readFileSync(join(ROOT, 'sw.js'), 'utf8');
+        expect(source).toContain("request.destination === 'script'");
+        expect(source).toContain("request.destination === 'style'");
+        expect(source).toContain('event.respondWith(networkFirst(request));');
+    });
+
+    it('Service Worker スクリプトの HTTP キャッシュを使わず更新確認する', () => {
+        const source = readFileSync(join(ROOT, 'js/registerSW.js'), 'utf8');
+        expect(source).toContain("updateViaCache: 'none'");
+    });
 });
 
 describe('アクセス解析の整合', () => {
