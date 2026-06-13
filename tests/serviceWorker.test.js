@@ -48,6 +48,14 @@ describe('Service Worker', () => {
         const source = readFileSync(join(ROOT, 'js/registerSW.js'), 'utf8');
         expect(source).toContain("updateViaCache: 'none'");
     });
+
+    it('更新時は入口画面だけを再読込して旧版混在を解消する', () => {
+        const source = readFileSync(join(ROOT, 'sw.js'), 'utf8');
+        expect(source).toContain("self.clients.matchAll({ type: 'window' })");
+        expect(source).toContain("path.endsWith('/landing.html')");
+        expect(source).toContain("path.endsWith('/index.html')");
+        expect(source).toContain('client.navigate(client.url)');
+    });
 });
 
 describe('アクセス解析の整合', () => {

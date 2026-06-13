@@ -9,7 +9,7 @@
 // - 同一オリジンの静的アセットは cache-first（バージョンで陳腐化を限定）。
 // - 大きな問題/レッスンデータはプリキャッシュせず、開いた資格ぶんだけランタイムキャッシュ。
 
-const VERSION = 'v4'; // リリースごとに手動更新（README 参照）
+const VERSION = 'v5'; // リリースごとに手動更新（README 参照）
 const APP_CACHE = `qa-app-${VERSION}`; // アプリシェル＋同一オリジン資産（デプロイで入替）
 const FONT_CACHE = 'qa-fonts-v1'; // クロスオリジンの Google Fonts（デプロイで消さない）
 
@@ -106,6 +106,16 @@ self.addEventListener('activate', event => {
                     .map(key => caches.delete(key))
             );
             await self.clients.claim();
+
+            // 旧 SW が返した入口画面だけを再読込し、HTML/JS の旧版混在を即時解消する。
+            const clients = await self.clients.matchAll({ type: 'window' });
+            await Promise.all(clients.map(client => {
+                const path = new URL(client.url).pathname;
+                const isEntryPage = path.endsWith('/')
+                    || path.endsWith('/landing.html')
+                    || path.endsWith('/index.html');
+                return isEntryPage ? client.navigate(client.url) : Promise.resolve();
+            }));
         })()
     );
 });
