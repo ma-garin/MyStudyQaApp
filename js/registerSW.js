@@ -10,7 +10,7 @@ export function registerServiceWorker() {
     if (typeof navigator === 'undefined' || !('serviceWorker' in navigator)) return;
     window.addEventListener('load', () => {
         navigator.serviceWorker
-            .register('sw.js', { scope: './' })
+            .register('sw.js', { scope: './', updateViaCache: 'none' })
             .catch(err => console.warn('Service Worker の登録に失敗しました:', err));
     });
 }

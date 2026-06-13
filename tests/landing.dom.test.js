@@ -1,4 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 vi.mock('../js/utils.js', () => ({
     setupCommonNavigation: vi.fn(() => {
@@ -75,5 +77,26 @@ describe('ランディング画面（landing.js）', () => {
         const aside = document.getElementById('rights-safety-disclaimer');
         expect(aside).not.toBeNull();
         expect(aside.textContent.length).toBeGreaterThan(0);
+    });
+});
+
+describe('ホーム画面のコース導線', () => {
+    const html = readFileSync(join(process.cwd(), 'index.html'), 'utf8');
+
+    it('ホームに資格選択カードを重複配置しない', () => {
+        expect(html).not.toContain('id="cert-cards"');
+        expect(html).not.toContain('学習コースを選択');
+        expect(html).not.toContain('コース変更');
+        expect(html.indexOf('home-primary-action')).toBeLessThan(html.indexOf('progress-card'));
+    });
+
+    it('選択済みコースがある場合はランディングへ戻さない', () => {
+        expect(html).toContain("!localStorage.getItem('qa_selected_cert')");
+    });
+
+    it('コース変更は設定画面にのみ配置する', () => {
+        const settingsHtml = readFileSync(join(process.cwd(), 'settings.html'), 'utf8');
+        expect(settingsHtml).toContain('学習コースを変更');
+        expect(settingsHtml).toContain('href="landing.html"');
     });
 });

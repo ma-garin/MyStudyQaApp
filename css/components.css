@@ -851,20 +851,46 @@ table tbody tr:nth-child(even) {
 
 /* ── Home greeting ────────────────────────────── */
 .home-greeting {
-    padding: 8px 0 4px;
+    padding: 2px 0 4px;
     margin-bottom: 14px;
+}
+
+.greeting-label {
+    margin: 0 0 2px;
+    color: var(--text-muted);
+    font-size: 0.72em;
+    font-weight: 600;
 }
 
 .greeting-sub {
     font-size: 0.85em;
-    color: var(--text-muted);
-    margin: 0 0 2px;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 0 0 6px;
 }
 
 .home-greeting h2 {
     font-size: 1.25em;
     margin: 0;
     color: var(--text);
+}
+
+.home-primary-action {
+    min-height: 84px;
+    margin-bottom: 14px;
+    padding: 18px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.home-primary-action .action-title {
+    font-size: 1.08em;
+    margin-bottom: 4px;
+}
+
+.home-primary-arrow {
+    color: rgba(255,255,255,0.9);
 }
 
 /* ── Release notes ───────────────────────────── */
@@ -1060,62 +1086,6 @@ table tbody tr:nth-child(even) {
 }
 .settings-btn--primary:active { opacity: 0.85; }
 
-/* ── Cert Selector ────────────────────────────── */
-.cert-selector-section {
-    margin: 0 0 16px;
-}
-.cert-selector-title {
-    font-size: 0.85em;
-    font-weight: 700;
-    color: var(--text-muted);
-    margin: 0 0 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-.cert-cards {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-.cert-cards::-webkit-scrollbar { display: none; }
-.cert-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-    min-width: 110px;
-    padding: 10px 12px;
-    border-radius: var(--radius);
-    border: 1.5px solid var(--border);
-    background: var(--surface);
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-    box-shadow: none;
-    white-space: normal;
-    text-align: left;
-}
-.cert-card:hover:not(:disabled) {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(79,70,229,0.12);
-}
-.cert-card--active {
-    border-color: var(--primary);
-    background: linear-gradient(135deg, #EEF2FF, #F5F3FF);
-    box-shadow: 0 0 0 2px rgba(79,70,229,0.18);
-}
-.cert-card--disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-}
-.cert-card-name {
-    font-size: 0.95em;
-    font-weight: 700;
-    color: var(--text);
-}
-.cert-card--active .cert-card-name { color: var(--primary); }
 .cert-card-level {
     font-size: 0.68em;
     font-weight: 700;
