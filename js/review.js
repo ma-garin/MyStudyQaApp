@@ -67,6 +67,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         btn.addEventListener('click', () => rate(Number(btn.dataset.rating)));
     });
 
+    // キーボード操作: 解答前は Enter で解答、解答後は 1〜4 で確信度評価
+    document.addEventListener('keydown', event => {
+        if (event.target && /^(INPUT|TEXTAREA)$/.test(event.target.tagName)) return;
+        const answered = !els.feedback.classList.contains('hidden');
+        const completed = !els.complete.classList.contains('hidden');
+        if (completed) return;
+        if (!answered) {
+            if (event.key === 'Enter') { event.preventDefault(); submitAnswer(); }
+            return;
+        }
+        if (event.key >= '1' && event.key <= '4') {
+            event.preventDefault();
+            rate(Number(event.key) - 1); // 1->AGAIN(0) ... 4->EASY(3)
+        }
+    });
+
     loadNext();
 
     function loadNext() {
